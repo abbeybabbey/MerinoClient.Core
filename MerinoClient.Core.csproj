@@ -33,19 +33,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\0Harmony.dll</HintPath>
+      <HintPath>Dependencies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\Assembly-CSharp.dll</HintPath>
+      <HintPath>Dependencies\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="DataModel">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\DataModel.dll</HintPath>
+      <HintPath>Dependencies\DataModel.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\Il2Cppmscorlib.dll</HintPath>
+      <HintPath>Dependencies\Il2Cppmscorlib.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\MelonLoader.dll</HintPath>
+      <HintPath>Dependencies\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,50 +55,44 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tomlet">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\Tomlet.dll</HintPath>
-    </Reference>
     <Reference Include="UnhollowerBaseLib">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnhollowerBaseLib.dll</HintPath>
+      <HintPath>Dependencies\UnhollowerBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>Dependencies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.dll</HintPath>
+      <HintPath>Dependencies\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>Dependencies\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>Dependencies\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>Dependencies\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.UI.dll</HintPath>
+      <HintPath>Dependencies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>Dependencies\UnityEngine.UIModule.dll</HintPath>
     </Reference>
     <Reference Include="VRC.UI.Core">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRC.UI.Core.dll</HintPath>
+      <HintPath>Dependencies\VRC.UI.Core.dll</HintPath>
     </Reference>
     <Reference Include="VRC.UI.Elements">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRC.UI.Elements.dll</HintPath>
+      <HintPath>Dependencies\VRC.UI.Elements.dll</HintPath>
     </Reference>
     <Reference Include="VRC.UI.Shared">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRC.UI.Shared.dll</HintPath>
+      <HintPath>Dependencies\VRC.UI.Shared.dll</HintPath>
     </Reference>
     <Reference Include="VRCCore-Standalone">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRCCore-Standalone.dll</HintPath>
+      <HintPath>Dependencies\VRCCore-Standalone.dll</HintPath>
     </Reference>
     <Reference Include="VRCSDKBase">
-      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRCSDKBase.dll</HintPath>
+      <HintPath>Dependencies\VRCSDKBase.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
