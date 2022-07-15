@@ -38,19 +38,17 @@ namespace MerinoClient.Core.UI.QuickMenu
             set => _titleText.text = value;
         }
 
-        private TextMeshProUGUI _titleText;
-        private GameObject _toggleGroupRoot;
-        private List<Tuple<String, Object>> _radioElementSource = new();
-        private List<RadioToggle> _radioElements = new();
+        private readonly TextMeshProUGUI _titleText;
+        private readonly GameObject _toggleGroupRoot;
+        private readonly List<Tuple<String, Object>> _radioElementSource = new();
+        private readonly List<RadioToggle> _radioElements = new();
         private bool _isUpdated;
-        
-        private readonly bool _isRoot;
 
         private readonly Transform _container;
 
         public UIPage UiPage { get; }
 
-        public RadioTogglePage(string name) : base(MenuPrefab, QuickMenuEx.MenuParent, $"Menu_{name}", false)
+        public RadioTogglePage(string name, bool isRoot) : base(MenuPrefab, QuickMenuEx.MenuParent, $"Menu_{name}", false)
         {
             var headerTransform = RectTransform.GetChild(0);
             

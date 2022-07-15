@@ -58,21 +58,21 @@ namespace MerinoClient.Core.Managers
             return Sprites.ContainsKey(resourceName) ? Sprites[resourceName] : null;
         }
 
-        public static void LoadImageResources(string prefix)
+        public static void LoadResources()
         {
-            var assembly = Assembly.GetCallingAssembly();
-            var resources = assembly.GetManifestResourceNames();
+            var ourAssembly = Assembly.GetExecutingAssembly();
+            var resources = ourAssembly.GetManifestResourceNames();
             foreach (var resource in resources)
             {
-                if (!resource.EndsWith(".png") && !resource.EndsWith(".jpg"))
+                if (!resource.EndsWith(".png"))
                     continue;
 
-                var stream = assembly.GetManifestResourceStream(resource);
+                var stream = ourAssembly.GetManifestResourceStream(resource);
 
                 using var ms = new MemoryStream();
-                stream!.CopyTo(ms);
+                stream?.CopyTo(ms);
                 var resourceName = Regex.Match(resource, @"([a-zA-Z\d\-_]+)\.png").Groups[1].ToString();
-                LoadSprite(prefix, resourceName, ms.ToArray());
+                LoadSprite("MerinoClient.Resources", resourceName, ms.ToArray());
             }
         }
     }

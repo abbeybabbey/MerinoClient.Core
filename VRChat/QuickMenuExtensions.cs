@@ -4,14 +4,34 @@ using System.Reflection;
 using UnityEngine;
 using VRC.UI;
 using VRC.UI.Elements;
+using VRC.UI.Elements.Controls;
 
 namespace MerinoClient.Core.VRChat
 {
     public static class QuickMenuExtensions
     {
-        public delegate void ShowConfirmDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action onYes, Il2CppSystem.Action onNo=null, string confirmText = "Yes", string declineText = "No");
-        private static ShowConfirmDialogDelegate _showConfirmDialogDelegate;
+        private delegate void ShowModalAlertDelegate(ModalAlert modalAlert, string text);
+        private static ShowModalAlertDelegate _showModalAlert;
+        private static ShowModalAlertDelegate ShowModalAlertFn
+        {
+            get
+            {
+                if (_showModalAlert != null)
+                    return _showModalAlert;
 
+                var showModalAlertFn = typeof(ModalAlert).GetMethods().First(method =>
+                    method.Name.StartsWith("Method_Public_Void_String_") && method.GetParameters().Length == 1 &&
+                    XrefUtils.CheckUsedBy(method, "Method_Public_Virtual_Final_New_Void_String_"));
+
+                _showModalAlert =
+                    (ShowModalAlertDelegate)Delegate.CreateDelegate(typeof(ShowModalAlertDelegate), showModalAlertFn);
+
+                return _showModalAlert;
+            }
+        }
+
+        public delegate void ShowConfirmDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action acceptAction, Il2CppSystem.Action declineAction = null, string confirmText = "Yes", string declineText = "No");
+        private static ShowConfirmDialogDelegate _showConfirmDialogDelegate;
         private static ShowConfirmDialogDelegate ShowConfirmDialogFn
         {
             get
@@ -37,9 +57,9 @@ namespace MerinoClient.Core.VRChat
         {
             return quickMenu.gameObject.activeSelf;
         }
+
         public delegate void ShowConfirmDialogWithCancelDelegate(UIMenu uiMenu, string title, string body, string yesLabel, string noLabel, string cancelLabel, Il2CppSystem.Action onYes, Il2CppSystem.Action onNo, Il2CppSystem.Action onCancel);
         private static ShowConfirmDialogWithCancelDelegate _showConfirmDialogWithCancelDelegate;
-        
         private static ShowConfirmDialogWithCancelDelegate ShowConfirmDialogWithCancelFn
         {
             get
@@ -62,7 +82,6 @@ namespace MerinoClient.Core.VRChat
 
         public delegate void ShowAlertDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action onClose, string closeText = "Close", bool unknown = false);
         private static ShowAlertDialogDelegate _showAlertDialogDelegate;
-
         private static ShowAlertDialogDelegate ShowAlertDialogFn
         {
             get
@@ -92,7 +111,7 @@ namespace MerinoClient.Core.VRChat
         {
             ShowConfirmDialogFn.Invoke(uiMenu, title, body, onYes, onNo, confirmText, declineText);
         }
-        
+
         public static void ShowConfirmDialogWithCancel(this UIMenu uiMenu, string title, string body, string yesLabel, string noLabel, string cancelLabel, Action onYes, Action onNo, Action onCancel)
         {
             ShowConfirmDialogWithCancelFn.Invoke(uiMenu, title, body, yesLabel, noLabel, cancelLabel, onYes, onNo, onCancel);
@@ -107,8 +126,14 @@ namespace MerinoClient.Core.VRChat
         {
             ShowAlertDialogFn.Invoke(uiMenu, title, body, onClose, closeText, false);
         }
+
+        public static void ShowModalAlert(this ModalAlert modalAlert, string alertText)
+        {
+            ShowModalAlertFn.Invoke(modalAlert, alertText);
+        }
         
         private static MethodInfo _closeQuickMenuMethod;
+
         public static void CloseQuickMenu(this UIManagerImpl uiManager)
         {
             if (_closeQuickMenuMethod == null)
@@ -118,6 +143,11 @@ namespace MerinoClient.Core.VRChat
                     .First(method => method.Name.StartsWith("Method_Public_Void_Boolean_") && XrefUtils.CheckUsing(method, goSetActive?.Name));
             }
             _closeQuickMenuMethod.Invoke(uiManager, new object[1] { true });
+        }
+
+        public static ModalAlert GetModalAlert(this UIMenu uiMenu)
+        {
+            return uiMenu.field_Private_ModalAlert_0;
         }
     }
 }
