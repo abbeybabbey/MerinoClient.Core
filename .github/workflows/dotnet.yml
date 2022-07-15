@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: ${{ secrets.LibsRepository }}
-        token: ${{ secrets.MY_TOKEN || github.token }}
+        token: ${{ secrets.LibsRepositoryToken }}
         path: 3rdparty/ml
 
     - name: Setup .NET
