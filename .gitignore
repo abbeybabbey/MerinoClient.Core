@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+MerinoClient.Core/Dependencies/*.db
+MerinoClient.Core/Dependencies/*.dll
+MerinoClient.Core/Dependencies/*.xml
