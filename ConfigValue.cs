@@ -13,9 +13,11 @@ namespace MerinoClient.Core
 
         public T Value => _entry.Value;
 
-        public ConfigValue(string name, T defaultValue, string displayName = null, string description = null, bool isHidden = false)
+        public string DisplayName => _entry.DisplayName;
+
+        public ConfigValue(string name, T defaultValue, string displayName = null, MelonPreferences_Category customCategory = null, string description = null,  bool isHidden = true)
         {
-            var category = MelonPreferences.CreateCategory(ConfigManager.Instance.CategoryName);
+            var category = MelonPreferences.CreateCategory(customCategory == null ? ConfigManager.Instance.CategoryName : customCategory.Identifier);
 
             var entryName = string.Concat(name.Where(c => char.IsLetter(c) || char.IsNumber(c)));
             _entry = category.GetEntry<T>(entryName) ?? category.CreateEntry(entryName, defaultValue, displayName, description, isHidden);

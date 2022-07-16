@@ -3,6 +3,7 @@ using MerinoClient.Core.VRChat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VRC.SDKBase;
 using VRC.UI.Core.Styles;
 using Object = UnityEngine.Object;
 
@@ -48,6 +49,7 @@ namespace MerinoClient.Core.UI.QuickMenu
 
         private readonly StyleElement _styleElement;
         private readonly Button _button;
+
         public bool Interactable
         {
             get => _button.interactable;

@@ -41,6 +41,16 @@ namespace MerinoClient.Core.Unity
             return returnArray;
         }
 
+        public static bool IsSafe(this float f)
+        {
+            return !IsAbsurd(f);
+        }
+
+        public static bool IsSafe(this Vector3 v3)
+        {
+            return !IsAbsurd(v3) || !IsBad(v3);
+        }
+
         public static bool IsAbsurd(this float f)
         {
             return !(f > MaxAllowedValueBottom && f < MaxAllowedValueTop);

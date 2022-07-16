@@ -7,6 +7,7 @@ using VRC.Core;
 using VRC.DataModel;
 using VRC.SDKBase;
 using VRC.UI;
+using VRC.UI.Elements.Menus;
 
 namespace MerinoClient.Core.VRChat
 {
@@ -63,6 +64,11 @@ namespace MerinoClient.Core.VRChat
             return player.prop_ApiAvatar_0;
         }
 
+        public static Photon.Realtime.Player GetPhotonPlayer(this Player player)
+        {
+            return player.prop_Player_1;
+        }
+
         public static Player GetPlayer(this VRCPlayer vrcPlayer)
         {
             return vrcPlayer._player;
@@ -90,16 +96,31 @@ namespace MerinoClient.Core.VRChat
 
         public static string GetAvatarID(this IUser iUser)
         {
-            string avatarID = "avtr_00000000-0000-0000-0000-000000000000";
+            var avatarId = "avtr_00000000-0000-0000-0000-000000000000";
 
             iUser.prop_ILoadable_1_InterfacePublicAbstractStBoSt1BoTeStDaBoObUnique_0
                 .Method_Public_Abstract_Virtual_New_Void_Action_1_T_Action_1_String_0(
                     new Action<InterfacePublicAbstractStBoSt1BoTeStDaBoObUnique>(activeAvatar =>
                     {
-                        avatarID = activeAvatar.prop_String_0;
+                        avatarId = activeAvatar.prop_String_0;
                     }));
 
-            return avatarID;
+            return avatarId;
+        }
+
+        public static string GetDisplayName(this IUser iUser)
+        {
+            return iUser.prop_String_1;
+        }
+
+        public static bool IsSelf(this IUser iUser)
+        {
+            return iUser.GetUserID() == APIUser.CurrentUser.id;
+        }
+
+        public static string GetLocation(this IUser iUser)
+        {
+            return iUser.prop_Observable_1_String_2?.prop_TYPE_0;
         }
 
         public static bool IsStaff(this APIUser user)
@@ -111,6 +132,16 @@ namespace MerinoClient.Core.VRChat
             return user.tags.Contains("admin_moderator") || user.tags.Contains("admin_scripting_access") ||
                    user.tags.Contains("admin_official_thumbnail");
         }
+
+        public static bool IsOwn(this ApiAvatar apiAvatar)
+        {
+            return apiAvatar.authorId == APIUser.CurrentUser.id;
+        }
+
+        public static IUser GetIUser(this SelectedUserMenuQM selectedUserMenuQm)
+        {
+            return selectedUserMenuQm.field_Private_IUser_0;
+        } 
 
         private static MethodInfo _reloadAvatarMethod;
         private static MethodInfo LoadAvatarMethod
@@ -158,7 +189,7 @@ namespace MerinoClient.Core.VRChat
 
             var apiModelContainer = new ApiModelContainer<ApiAvatar>
             {
-                OnSuccess = new Action<ApiContainer>(c =>
+                OnSuccess = new Action<ApiContainer>(_ =>
                 {
                     var pageAvatar = Resources.FindObjectsOfTypeAll<PageAvatar>()[0];
                     var apiAvatar = new ApiAvatar

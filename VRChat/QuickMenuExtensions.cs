@@ -30,7 +30,7 @@ namespace MerinoClient.Core.VRChat
             }
         }
 
-        public delegate void ShowConfirmDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action acceptAction, Il2CppSystem.Action declineAction = null, string confirmText = "Yes", string declineText = "No");
+        private delegate void ShowConfirmDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action acceptAction, Il2CppSystem.Action declineAction = null, string confirmText = "Yes", string declineText = "No");
         private static ShowConfirmDialogDelegate _showConfirmDialogDelegate;
         private static ShowConfirmDialogDelegate ShowConfirmDialogFn
         {
@@ -58,7 +58,7 @@ namespace MerinoClient.Core.VRChat
             return quickMenu.gameObject.activeSelf;
         }
 
-        public delegate void ShowConfirmDialogWithCancelDelegate(UIMenu uiMenu, string title, string body, string yesLabel, string noLabel, string cancelLabel, Il2CppSystem.Action onYes, Il2CppSystem.Action onNo, Il2CppSystem.Action onCancel);
+        private delegate void ShowConfirmDialogWithCancelDelegate(UIMenu uiMenu, string title, string body, string yesLabel, string noLabel, string cancelLabel, Il2CppSystem.Action onYes, Il2CppSystem.Action onNo, Il2CppSystem.Action onCancel);
         private static ShowConfirmDialogWithCancelDelegate _showConfirmDialogWithCancelDelegate;
         private static ShowConfirmDialogWithCancelDelegate ShowConfirmDialogWithCancelFn
         {
@@ -80,7 +80,7 @@ namespace MerinoClient.Core.VRChat
             }
         }
 
-        public delegate void ShowAlertDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action onClose, string closeText = "Close", bool unknown = false);
+        private delegate void ShowAlertDialogDelegate(UIMenu uiMenu, string title, string body, Il2CppSystem.Action onClose, string closeText = "Close", bool unknown = false);
         private static ShowAlertDialogDelegate _showAlertDialogDelegate;
         private static ShowAlertDialogDelegate ShowAlertDialogFn
         {
@@ -124,7 +124,7 @@ namespace MerinoClient.Core.VRChat
         
         public static void ShowAlertDialog(this UIMenu uiMenu, string title, string body, string closeText, Action onClose = null)
         {
-            ShowAlertDialogFn.Invoke(uiMenu, title, body, onClose, closeText, false);
+            ShowAlertDialogFn.Invoke(uiMenu, title, body, onClose, closeText);
         }
 
         public static void ShowModalAlert(this ModalAlert modalAlert, string alertText)

@@ -66,6 +66,21 @@ namespace MerinoClient.Core.VRChat
             }
         }
 
+        private static SelectedUserMenuQM _selectedUserRemote;
+
+        public static SelectedUserMenuQM SelectedUserRemote
+        {
+            get
+            {
+                if (_selectedUserRemote == null)
+                {
+                    _selectedUserRemote = Instance.field_Public_Transform_0.Find("Window/QMParent/Menu_SelectedUser_Remote").GetComponent<SelectedUserMenuQM>();
+                }
+
+                return _selectedUserRemote;
+            }
+        }
+
         private static SelectedUserMenuQM _selectedUserLocal;
 
         public static SelectedUserMenuQM SelectedUserLocal

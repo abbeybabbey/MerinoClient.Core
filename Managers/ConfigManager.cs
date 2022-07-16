@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using MelonLoader;
 
 namespace MerinoClient.Core.Managers
 {
@@ -8,13 +10,18 @@ namespace MerinoClient.Core.Managers
 
         public static ConfigManager Instance { get; private set; }
 
-        public ConfigManager(string categoryName)
+        public static ConfigManager Create(string categoryName)
         {
             if (Instance != null)
             {
                 throw new Exception("ConfigManager already exists.");
             }
 
+            return new ConfigManager(categoryName);
+        }
+
+        private ConfigManager(string categoryName)
+        {
             Instance = this;
             CategoryName = categoryName;
         }

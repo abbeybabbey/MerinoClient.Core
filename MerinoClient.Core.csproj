@@ -92,6 +92,14 @@
     <Reference Include="VRCCore-Standalone">
       <HintPath>Dependencies\VRCCore-Standalone.dll</HintPath>
     </Reference>
+    <Reference Include="VRCSDK2, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRCSDK2.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\VRCSDK3.dll</HintPath>
+    </Reference>
     <Reference Include="VRCSDKBase">
       <HintPath>Dependencies\VRCSDKBase.dll</HintPath>
     </Reference>
@@ -102,7 +110,6 @@
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\ResourceManager.cs" />
     <Compile Include="Managers\UiManager.cs" />
-    <Compile Include="MelonLoader\NativePatchUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\QuickMenu\IButtonPage.cs" />
     <Compile Include="UI\QuickMenu\CategoryPage.cs" />
@@ -130,7 +137,9 @@
     <Compile Include="Unity\RenderObjectListener.cs" />
     <Compile Include="Unity\UnityExtensions.cs" />
     <Compile Include="VRChat\ActionMenuExtensions.cs" />
+    <Compile Include="VRChat\PickUpExtensions.cs" />
     <Compile Include="VRChat\PlayerExtensions.cs" />
+    <Compile Include="VRChat\PlayerWrappers.cs" />
     <Compile Include="VRChat\PopupManagerExtensions.cs" />
     <Compile Include="VRChat\QuickMenuEx.cs" />
     <Compile Include="VRChat\QuickMenuExtensions.cs" />

@@ -23,6 +23,11 @@ namespace MerinoClient.Core.UI
             set => GameObject.SetActive(value);
         }
 
+        public void SetActive(bool isActive)
+        {
+            Active = isActive;
+        }
+
         public UiElement(Transform transform)
         {
             RectTransform = transform.GetComponent<RectTransform>();
