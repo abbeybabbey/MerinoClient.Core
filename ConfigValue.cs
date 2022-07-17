@@ -13,7 +13,11 @@ namespace MerinoClient.Core
 
         public T Value => _entry.Value;
 
+        public T DefaultValue => _entry.DefaultValue;
+
         public string DisplayName => _entry.DisplayName;
+
+        public string Name => _entry.Identifier;
 
         public ConfigValue(string name, T defaultValue, string displayName = null, MelonPreferences_Category customCategory = null, string description = null,  bool isHidden = true)
         {
@@ -33,6 +37,12 @@ namespace MerinoClient.Core
         {
             _entry.Value = value;
             MelonPreferences.Save();
+        }
+
+        public void SoftSetValue(T value)
+        {
+            //TODO: make a better solution for MirroredWingToggle not saving preferences every-time it's made
+            _entry.Value = value;
         }
 
         public override string ToString()

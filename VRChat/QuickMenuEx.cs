@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using MerinoClient.Core.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.UI.Elements;
@@ -232,8 +233,8 @@ namespace MerinoClient.Core.VRChat
             {
                 if (_onIconSprite == null)
                 {
-                    _onIconSprite = Instance.field_Public_Transform_0
-                        .Find("Window/QMParent/Menu_Notifications/Panel_NoNotifications_Message/Icon").GetComponent<Image>().sprite;
+                    //can be left at default, but I like to use my own that I load in the main assembly that this core is built for
+                    _onIconSprite = ResourceManager.GetSprite("check-mark");
                 }
                 return _onIconSprite;
             }

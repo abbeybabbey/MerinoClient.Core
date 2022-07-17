@@ -48,7 +48,7 @@ namespace MerinoClient.Core.UI.Wings
             return new MirroredWingButton(text, tooltip, onClick, _leftMenu.Container, _rightMenu.Container, sprite, arrow, background, separator);
         }
 
-        public MirroredWingToggle AddToggle(string text, string tooltip, Action<bool> onToggle, bool defaultValue)
+        public MirroredWingToggle AddToggle(string text, string tooltip, Action<bool> onToggle, ConfigValue<bool> defaultValue)
         {
             if (_leftMenu == null || _rightMenu == null)
             {
@@ -57,6 +57,17 @@ namespace MerinoClient.Core.UI.Wings
 
             return new MirroredWingToggle(text, tooltip, onToggle, _leftMenu.Container, _rightMenu.Container,
                 defaultValue);
+        }
+
+        public MirroredWingToggle AddToggle(string text, string tooltip, ConfigValue<bool> onToggle)
+        {
+            if (_leftMenu == null || _rightMenu == null)
+            {
+                throw new NullReferenceException("This wing menu has been destroyed.");
+            }
+
+            return new MirroredWingToggle(text, tooltip, onToggle.SoftSetValue, _leftMenu.Container, _rightMenu.Container,
+                onToggle);
         }
 
         public MirroredWingMenu AddSubMenu(string text, string tooltip, Sprite sprite = null, bool arrow = true,

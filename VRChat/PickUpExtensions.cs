@@ -5,7 +5,7 @@ using VRC_Pickup = VRCSDK2.VRC_Pickup;
 
 namespace MerinoClient.Core.VRChat;
 
-public static class PickUpExtensions
+public static class PickupExtensions
 {
     public static void Destroy(this List<VRC_Pickup> pickups)
     {

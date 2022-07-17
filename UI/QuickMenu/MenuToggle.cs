@@ -136,7 +136,6 @@ namespace MerinoClient.Core.UI.QuickMenu
                 var realType = GetUnhollowedType(il2CppType);
                 if (realType == null)
                 {
-                    MelonLogger.Error("SHITS FUCKED!");
                     break;
                 }
                 _toggleIcon = Activator.CreateInstance(realType, c.Pointer);

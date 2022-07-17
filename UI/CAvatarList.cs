@@ -12,11 +12,12 @@ namespace MerinoClient.Core.UI
 {
     public interface IAvatarListOwner
     {
-        List<ApiAvatar> GetAvatars(AvatarList avatarList);
-        void Clear(AvatarList avatarList);
+        List<ApiAvatar> GetAvatars(CAvatarList avatarList);
+        void Clear(CAvatarList avatarList);
     }
 
-    public class AvatarList : UiElement
+    //'C' indicates custom in this case
+    public class CAvatarList : UiElement
     {
         private static GameObject _legacyAvatarList;
         private static GameObject LegacyAvatarList
@@ -58,7 +59,7 @@ namespace MerinoClient.Core.UI
         private readonly string _title;
 
         private readonly IAvatarListOwner _owner;
-        public AvatarList(string title, IAvatarListOwner owner, bool addClearButton = true, bool addPagination = true) : base(
+        public CAvatarList(string title, IAvatarListOwner owner, bool addClearButton = true, bool addPagination = true) : base(
             LegacyAvatarList,
             LegacyAvatarList.transform.parent,
             $"{title}AvatarList",

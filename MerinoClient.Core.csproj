@@ -48,6 +48,10 @@
     <Reference Include="MelonLoader">
       <HintPath>Dependencies\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Photon-DotNet, Version=4.1.6.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MerinoClient\MerinoClient\Dependencies\Photon-DotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -122,7 +126,7 @@
     <Compile Include="UI\QuickMenu\RadioTogglePage.cs" />
     <Compile Include="UI\QuickMenu\SliderCategory.cs" />
     <Compile Include="UI\QuickMenu\TabButton.cs" />
-    <Compile Include="UI\AvatarList.cs" />
+    <Compile Include="UI\CAvatarList.cs" />
     <Compile Include="UI\UiButton.cs" />
     <Compile Include="UI\UiText.cs" />
     <Compile Include="UI\UiElement.cs" />
@@ -137,9 +141,11 @@
     <Compile Include="Unity\RenderObjectListener.cs" />
     <Compile Include="Unity\UnityExtensions.cs" />
     <Compile Include="VRChat\ActionMenuExtensions.cs" />
-    <Compile Include="VRChat\PickUpExtensions.cs" />
+    <Compile Include="VRChat\ParserExtensions.cs" />
+    <Compile Include="VRChat\PhotonExtensions.cs" />
+    <Compile Include="VRChat\PickupExtensions.cs" />
     <Compile Include="VRChat\PlayerExtensions.cs" />
-    <Compile Include="VRChat\PlayerWrappers.cs" />
+    <Compile Include="VRChat\PlayerEx.cs" />
     <Compile Include="VRChat\PopupManagerExtensions.cs" />
     <Compile Include="VRChat\QuickMenuEx.cs" />
     <Compile Include="VRChat\QuickMenuExtensions.cs" />
@@ -152,4 +158,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY "$(TargetPath)" "C:\Users\Sylvo\Desktop\MerinoClient\MerinoClient\Dependencies\$(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

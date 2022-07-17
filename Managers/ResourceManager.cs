@@ -48,7 +48,8 @@ namespace MerinoClient.Core.Managers
             var sprite = Sprite.CreateSprite_Injected(texture, ref rect, ref pivot, 100.0f, 0, SpriteMeshType.Tight, ref border, false);
             sprite.hideFlags |= HideFlags.DontUnloadUnusedAsset;
 
-            Sprites.Add($"{prefix}.{resourceName}", sprite);
+            //I like shorter text example: ResourceManager.GetSprite("sweat-droplets-white")
+            Sprites.Add($"{resourceName}", sprite);
 
             return sprite;
         }
@@ -58,16 +59,15 @@ namespace MerinoClient.Core.Managers
             return Sprites.ContainsKey(resourceName) ? Sprites[resourceName] : null;
         }
 
-        public static void LoadResources()
+        public static void LoadResources(Assembly resourcesAssembly)
         {
-            var ourAssembly = Assembly.GetExecutingAssembly();
-            var resources = ourAssembly.GetManifestResourceNames();
+            var resources = resourcesAssembly.GetManifestResourceNames();
             foreach (var resource in resources)
             {
                 if (!resource.EndsWith(".png"))
                     continue;
 
-                var stream = ourAssembly.GetManifestResourceStream(resource);
+                var stream = resourcesAssembly.GetManifestResourceStream(resource);
 
                 using var ms = new MemoryStream();
                 stream?.CopyTo(ms);

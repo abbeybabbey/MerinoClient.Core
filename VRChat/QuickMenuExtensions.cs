@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 using VRC.UI;
 using VRC.UI.Elements;
 using VRC.UI.Elements.Controls;
+using VRC.UI.Elements.Menus;
 
 namespace MerinoClient.Core.VRChat
 {
@@ -148,6 +150,24 @@ namespace MerinoClient.Core.VRChat
         public static ModalAlert GetModalAlert(this UIMenu uiMenu)
         {
             return uiMenu.field_Private_ModalAlert_0;
+        }
+
+        public static void AddScrollBar(this SelectedUserMenuQM selectedUserMenuQm)
+        {
+            var transform = selectedUserMenuQm.transform;
+
+            // Get scroll stuff
+            var scrollRect = transform.Find("ScrollRect").GetComponent<ScrollRect>();
+            scrollRect.enabled = true;
+
+            // Fix scrolling
+            var scrollbar = scrollRect.transform.Find("Scrollbar");
+            scrollbar.gameObject.SetActive(true);
+
+            scrollRect.enabled = true;
+            scrollRect.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
+            scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.Permanent;
+            scrollRect.viewport.GetComponent<RectMask2D>().enabled = true;
         }
     }
 }

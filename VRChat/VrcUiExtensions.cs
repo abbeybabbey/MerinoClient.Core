@@ -36,6 +36,7 @@ namespace MerinoClient.Core.VRChat
             uiManager.field_Private_Single_0 = 0f; // HudMessageDisplayTime
             uiManager.field_Private_Single_1 = duration; // HudMessageDisplayDuration
             uiManager.field_Private_Single_2 = delay; // DelayBeforeHudMessage
+            uiManager.field_Public_Text_0.fontSize = 25;
 
             uiManager.field_Private_List_1_String_0.Add(notification);
         }

@@ -111,6 +111,14 @@ namespace MerinoClient.Core.UI.Wings
             return new WingToggle(text, tooltip, onToggle, Container, defaultValue);
         }
 
+        public WingToggle AddToggle(string text, string tooltip, ConfigValue<bool> onToggle)
+        {
+            if (!GameObject)
+                throw new NullReferenceException("This wing menu has been destroyed.");
+
+            return new WingToggle(text, tooltip, onToggle.SoftSetValue, Container, onToggle);
+        }
+
         public WingMenu AddSubMenu(string text, string tooltip)
         {
             if (!GameObject)

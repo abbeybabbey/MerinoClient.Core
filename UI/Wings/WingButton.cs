@@ -89,6 +89,11 @@ namespace MerinoClient.Core.UI.Wings
                 container.gameObject.AddComponent<HorizontalLayoutGroup>();
                 tmp.enableAutoSizing = true;
             }
+            else if (sprite == null)
+            {
+                container.transform.GetChild(2).GetComponent<RectTransform>().anchoredPosition -= new Vector2(72, 0);
+                tmp.enableAutoSizing = true;
+            }
         }
 
         public static void Create(string text, string tooltip, Action onClick, Sprite sprite = null,

@@ -32,14 +32,14 @@ namespace MerinoClient.Core.UI.QuickMenu
 
         public bool IsOn;
         public Action<RadioToggle, bool> ToggleStateUpdated;
-        public System.Object ToggleData;
+        public object ToggleData;
 
         private Toggle _toggle;
         private Graphic _checkmark;
         private readonly TMP_Text _text;
         private StyleElement _style;
 
-        public RadioToggle(Transform parent, string name, string text, System.Object obj, bool defaultState = false) : base(TogglePrefab, parent, $"ReRadioToggle_{GetCleanName(name)}")
+        public RadioToggle(Transform parent, string name, string text, object obj, bool defaultState = false) : base(TogglePrefab, parent, $"ReRadioToggle_{GetCleanName(name)}")
         {
             Object.DestroyImmediate(RectTransform.GetComponent<AudioDeviceButton>());
             Object.DestroyImmediate(RectTransform.GetComponent<RadioButtonSelector>());

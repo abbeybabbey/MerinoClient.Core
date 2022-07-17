@@ -64,9 +64,31 @@ namespace MerinoClient.Core.VRChat
             return player.prop_ApiAvatar_0;
         }
 
-        public static Photon.Realtime.Player GetPhotonPlayer(this Player player)
+        public static Photon.Realtime.Player GetPlayer(this Player player)
         {
             return player.prop_Player_1;
+        }
+
+        public static VRCPlayerApi GeVRCPlayerApi(this Player player)
+        {
+            return player.field_Private_VRCPlayerApi_0;
+        }
+
+        public static string GetAPIUserType(this APIUser apiUser)
+        {
+            if (apiUser.IsStaff()) return "VRChat Team";
+
+            return APIUser.IsFriendsWith(apiUser.id) ? "Friend" : "User";
+        }
+
+        public static int GetActorNumber(this Photon.Realtime.Player player)
+        {
+            return player.field_Private_Int32_0;
+        }
+
+        public static string GetPlayerType(this Photon.Realtime.Player player)
+        {
+            return player.prop_Boolean_1 ? "MasterClient" : "Player";
         }
 
         public static Player GetPlayer(this VRCPlayer vrcPlayer)
@@ -89,12 +111,12 @@ namespace MerinoClient.Core.VRChat
             return vrcPlayer.field_Private_VRCPlayerApi_0;
         }
 
-        public static string GetUserID(this IUser iUser)
+        public static string GetUserId(this IUser iUser)
         {
             return iUser.prop_String_0;
         }
 
-        public static string GetAvatarID(this IUser iUser)
+        public static string GetAvatarId(this IUser iUser)
         {
             var avatarId = "avtr_00000000-0000-0000-0000-000000000000";
 
@@ -115,7 +137,7 @@ namespace MerinoClient.Core.VRChat
 
         public static bool IsSelf(this IUser iUser)
         {
-            return iUser.GetUserID() == APIUser.CurrentUser.id;
+            return iUser.GetUserId() == APIUser.CurrentUser.id;
         }
 
         public static string GetLocation(this IUser iUser)
@@ -133,6 +155,11 @@ namespace MerinoClient.Core.VRChat
                    user.tags.Contains("admin_official_thumbnail");
         }
 
+        public static bool IsUserInRoom(this APIUser user)
+        {
+            return PageUserInfo.Method_Private_Static_Boolean_APIUser_0(user);
+        }
+
         public static bool IsOwn(this ApiAvatar apiAvatar)
         {
             return apiAvatar.authorId == APIUser.CurrentUser.id;
@@ -141,7 +168,17 @@ namespace MerinoClient.Core.VRChat
         public static IUser GetIUser(this SelectedUserMenuQM selectedUserMenuQm)
         {
             return selectedUserMenuQm.field_Private_IUser_0;
-        } 
+        }
+
+        public static IUser GetIUser(this PageUserInfo pageUserInfo)
+        {
+            return pageUserInfo.field_Private_IUser_0;
+        }
+
+        public static APIUser GetAPIUser(this PageUserInfo pageUserInfo)
+        {
+            return pageUserInfo.field_Private_APIUser_0;
+        }
 
         private static MethodInfo _reloadAvatarMethod;
         private static MethodInfo LoadAvatarMethod
@@ -201,6 +238,43 @@ namespace MerinoClient.Core.VRChat
                 })
             };
             API.SendRequest($"avatars/{avatarId}", 0, apiModelContainer, null, true, true, 3600f, 2);
+        }
+
+
+        public static TrustLevel GetTrustLevel(this APIUser user)
+        {
+            if (user.IsStaff()) return TrustLevel.VRChatTeam;
+
+            if (user.hasVeteranTrustLevel)
+                return TrustLevel.Trusted;
+
+            if (user.hasTrustedTrustLevel)
+                return TrustLevel.Known;
+
+            if (user.hasKnownTrustLevel)
+                return TrustLevel.User;
+
+            if (user.hasBasicTrustLevel)
+                return TrustLevel.New;
+
+            if (user.isUntrusted)
+                return TrustLevel.Visitor;
+
+            if (user.hasNegativeTrustLevel || user.hasVeryNegativeTrustLevel)
+                return TrustLevel.Nuisance;
+
+            return TrustLevel.Visitor;
+        }
+
+        public enum TrustLevel
+        {
+            VRChatTeam,
+            Trusted,
+            Known,
+            User,
+            New,
+            Visitor,
+            Nuisance
         }
     }
 }

@@ -23,8 +23,9 @@ namespace MerinoClient.Core.Managers
 
             if (createRemoteTargetMenu)
             {
-                var localMenu = new CategoryPage(QuickMenuEx.SelectedUserRemote.transform);
-                TargetRemoteMenu = localMenu.AddCategory($"{menuName}");
+                QuickMenuEx.SelectedUserRemote.AddScrollBar();
+                var remoteMenu = new CategoryPage(QuickMenuEx.SelectedUserRemote.transform);
+                TargetRemoteMenu = remoteMenu.AddCategory($"{menuName}");
             }
         }
     }
