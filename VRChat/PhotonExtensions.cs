@@ -1,6 +1,5 @@
 ﻿using ExitGames.Client.Photon;
 using Il2CppSystem;
-using Il2CppSystem.Collections;
 using Il2CppSystem.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
@@ -11,16 +10,11 @@ public static class PhotonExtensions
 {
     public static Player GetPlayer(this int actorNumber)
     {
-        if (GetPlayersInRoom() == null) return null;
-        foreach (var player in GetPlayersInRoom())
+        if (PlayerEx.PlayersInRoom == null) return null;
+        foreach (var player in PlayerEx.PlayersInRoom)
             if (player.Key == actorNumber)
                 return player.Value;
         return null;
-    }
-
-    public static Dictionary<int, Player> GetPlayersInRoom()
-    {
-        return PhotonNetwork.prop_Room_0.field_Private_Dictionary_2_Int32_Player_0;
     }
 
     public static bool IsSelf(this EventData eventData)

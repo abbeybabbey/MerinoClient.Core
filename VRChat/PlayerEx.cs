@@ -1,10 +1,22 @@
-﻿using VRC;
+﻿using Il2CppSystem.Collections.Generic;
+using Photon.Pun;
+using VRC;
 using VRC.UI;
 
 namespace MerinoClient.Core.VRChat;
 
 public static class PlayerEx
 {
+    private static Dictionary<int, Photon.Realtime.Player> _playersInRoom;
+    public static Dictionary<int, Photon.Realtime.Player> PlayersInRoom
+    {
+        get
+        {
+            _playersInRoom = PhotonNetwork.prop_Room_0.field_Private_Dictionary_2_Int32_Player_0;
+            return _playersInRoom;
+        }
+    }
+
     private static VRCPlayer _vrcPlayer;
     public static VRCPlayer VRCPlayer
     {

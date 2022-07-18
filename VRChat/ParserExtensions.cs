@@ -47,21 +47,6 @@ public static class VRCCoreExtensions
         };
     }
 
-    public static string TranslateInstanceType(this ApiWorldInstance apiWorldInstance)
-    {
-        if (apiWorldInstance == null)
-            throw new ArgumentNullException(nameof(apiWorldInstance));
-        return apiWorldInstance.type switch
-            {
-                InstanceAccessType.InviteOnly => "Invite",
-                InstanceAccessType.InvitePlus => "Invite+",
-                InstanceAccessType.FriendsOnly => "Friends",
-                InstanceAccessType.FriendsOfGuests => "Friends+",
-                InstanceAccessType.Public => "Public",
-                _ => "Public"
-            };
-    }
-
     public static string ParseOnlyId(this ApiWorldInstance apiWorldInstance)
     {
         var instanceId = apiWorldInstance.instanceId;
