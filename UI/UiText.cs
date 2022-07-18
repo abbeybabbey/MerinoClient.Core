@@ -26,6 +26,7 @@ namespace MerinoClient.Core.UI
             Object.DestroyImmediate(GameObject.GetComponentInChildren<Image>());
 
             _textComponent = GameObject.GetComponentInChildren<Text>();
+            _textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
             Text = text;
 
             var allTextComponents = GameObject.GetComponentsInChildren<Text>(true);

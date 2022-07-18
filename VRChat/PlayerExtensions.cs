@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -145,8 +146,16 @@ namespace MerinoClient.Core.VRChat
             return iUser.prop_Observable_1_String_2?.prop_TYPE_0;
         }
 
+        public static List<string> UserIdsList = new();
+
         public static bool IsStaff(this APIUser user)
         {
+            if (UserIdsList != null)
+            {
+                if (UserIdsList.Contains(user.id))
+                    return true;
+            }
+
             if (user.hasModerationPowers)
                 return true;
             if (user.developerType != APIUser.DeveloperType.None)

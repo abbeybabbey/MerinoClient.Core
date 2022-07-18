@@ -91,26 +91,26 @@ namespace MerinoClient.Core.UI
             var offset = 0f;
             if (addClearButton)
             {
-                var unused1 = new UiButton("Clear", new Vector3(975, 0f), new Vector2(0.3f, 1), () => { _owner.Clear(this); }, expandButton.transform);
+                var unused1 = new UiButton("Clear", new Vector3(975, 0f), new Vector2(.4f, .8f), () => { _owner.Clear(this); }, expandButton.transform);
                 offset = 85f;
             }
 
-            var unused0 = new UiButton("↻", new Vector3(980f - offset, 0f), new Vector2(0.25f, 1), RefreshAvatars, expandButton.transform);
+            var unused0 = new UiButton("↻", new Vector3(980f - offset, 0f), new Vector2(.4f, .8f), RefreshAvatars, expandButton.transform);
             if (_hasPagination)
             {
-                _nextPageButton = new UiButton("→", new Vector2(900f - offset, 0f), new Vector2(0.25f, 1f), () =>
+                _nextPageButton = new UiButton("→", new Vector2(900f - offset, 0f), new Vector2(.4f, .8f), () =>
                 {
                     _currentPage += 1;
                     RefreshAvatars();
                 }, expandButton.transform);
 
-                _prevPageButton = new UiButton("←", new Vector2(750f - offset, 0f), new Vector2(0.25f, 1f), () =>
+                _prevPageButton = new UiButton("←", new Vector2(750f - offset, 0f), new Vector2(.4f, .8f), () =>
                 {
                     _currentPage -= 1;
                     RefreshAvatars();
                 }, expandButton.transform);
 
-                _pageCount = new UiText("0 / 0", new Vector2(825f - offset, 0f), new Vector2(0.25f, 1f), () =>
+                _pageCount = new UiText("0 / 0", new Vector2(825f - offset, 0f), new Vector2(.4f, .8f), () =>
                 {
                     VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowInputPopupWithCancel("Goto Page", string.Empty, InputField.InputType.Standard, true, "Submit",
                         (s, _, _) =>
