@@ -6,21 +6,19 @@ namespace MerinoClient.Core.VRChat;
 
 public static class VRCCoreExtensions
 {
-    public static APIUser GetInstanceCreator(this string idWithTags)
+    public static string GetInstanceCreator(this string idWithTags)
     {
-        var m = Regex.Match(idWithTags, @"\(([^)]*)\)").Groups[1].Value;
+        var instanceAccessType = idWithTags.GetInstanceAccessType();
 
-        var fetchedAPIUser = new APIUser();
+        if (instanceAccessType == InstanceAccessType.Public)
+            throw new Exception("Can't retrieve an instance creator of a public lobby");
 
-        API.Fetch<APIUser>(m, new Action<ApiContainer>(container =>
-        {
-            fetchedAPIUser = container.Model.Cast<APIUser>();
-        }));
+        var instanceCreator = Regex.Match(idWithTags, @"\((.*?)\)").Groups[1].Value;
 
-        if (fetchedAPIUser == null)
-            throw new NullReferenceException(nameof(fetchedAPIUser));
+        if (string.IsNullOrEmpty(instanceCreator))
+            throw new Exception($"Instance contains no instance creator: {idWithTags}");
 
-        return fetchedAPIUser;
+        return instanceCreator;
     }
 
     public static NetworkRegion GetNetworkRegion(this string idWithTags)
@@ -32,6 +30,20 @@ public static class VRCCoreExtensions
             return NetworkRegion.Japan;
 
         return idWithTags.Contains("region(use)") ? NetworkRegion.US_East : NetworkRegion.US_West;
+    }
+
+    public static InstanceAccessType GetInstanceAccessType(this string idWithTags)
+    {
+        if (idWithTags.Contains("hidden"))
+            return InstanceAccessType.FriendsOfGuests;
+
+        if (idWithTags.Contains("friends"))
+            return InstanceAccessType.FriendsOnly;
+
+        if (idWithTags.Contains("private") && idWithTags.Contains("canRequestInvite"))
+            return InstanceAccessType.InvitePlus;
+
+        return idWithTags.Contains("private") ? InstanceAccessType.InviteOnly : InstanceAccessType.Public;
     }
 
     public static string TranslateInstanceType(this InstanceAccessType instanceAccessType)
