@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using MelonLoader;
 
 namespace MerinoClient.Core.Managers
 {

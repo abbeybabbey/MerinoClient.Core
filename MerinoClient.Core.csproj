@@ -153,9 +153,6 @@
     <Compile Include="VRChat\VRCUiManagerEx.cs" />
     <Compile Include="XrefUtils.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
