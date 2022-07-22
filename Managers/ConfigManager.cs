@@ -12,7 +12,7 @@ namespace MerinoClient.Core.Managers
         {
             if (Instance != null)
             {
-                throw new Exception("ConfigManager already exists.");
+                throw new Exception("ConfigManager already exists");
             }
 
             return new ConfigManager(categoryName);
