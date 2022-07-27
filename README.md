@@ -1,2 +1,4 @@
 # MerinoClient.Core
 A modified [ReMod.Core](https://github.com/RequiDev/ReMod.Core) to **my code style/liking for educational purposes**. Most of the credit still goes to [@RequiDev](https://github.com/RequiDev)! The main purpose of this repository is to respect the **GNU General Public License v3.0 license** and contribute to an open source project in an indirect way.
+## IMPORTANT
+As of [27/07/2022](https://hello.vrchat.com/blog/vrchat-security-update) CEST VRChat has added a kernel anti-cheat [Easy Anti-Cheat](https://www.easy.ac/en-us), due to this change [MelonLoader](https://github.com/LavaGang/MelonLoader) becomes pretty much obsolete, due to it being open source mod loader which doesn't try to hide any dll injection at all (It's a mod loader after all). The repository will be archived and this project is discontinued.
